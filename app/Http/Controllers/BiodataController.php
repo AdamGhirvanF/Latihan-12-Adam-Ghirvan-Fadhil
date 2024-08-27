@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Biodata;
+use Illuminate\Support\Facades\Storage;
 
 class BiodataController extends Controller
 {
@@ -35,7 +36,19 @@ class BiodataController extends Controller
         $data->nik = $request->nik;
         $data->umur = $request->age;
         $data->alamat = $request->address;
-        $data->save();
+
+        $image = $request->file('file');
+
+        if($image) {
+            $imagePath = $image->store('images', 'public');
+            if($imagePath) {
+                $imageUrl = Storage::disk('public')->url($imagePath);
+                $data->file = $imagePath;
+                $data->save();
+            } else {
+                return redirect()->back()->with('error','Failed to upload image');
+            }
+        }
 
         return redirect('biodata');
     }

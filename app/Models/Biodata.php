@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Biodata extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['full_name', 'nik', 'umur', 'alamat', 'file'];
+
+    public $timestamps = true;
 }

@@ -15,7 +15,6 @@
                 <form action="{{ url('chatbot') }}" method="post">
                 @csrf
                     <input type="text" name="prompt" name="prompt" class="form-control mb-3" id="">
-
                     <button type="submit" class="btn btn-block btn-primary">Submit</button>
                 </form>
                 </div>

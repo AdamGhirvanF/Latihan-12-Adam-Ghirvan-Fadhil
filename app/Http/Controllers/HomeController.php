@@ -11,10 +11,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     /**
      * Show the application dashboard.
@@ -23,6 +23,56 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $kategori = [[
+                "namaKategori"=> "Handphone",
+                "id"=> 1,
+            ],
+            [
+                "namaKategori"=> "Laptop",
+                "id"=> 2,
+            ]
+        ];
+
+        $product = [[
+                "name" => "Samsul Pro Min",
+                "kategoriId" => 1,
+                "uniqueId" => "50000",
+                "harga" => 100000,
+                "diskon" => 0.1
+            ],
+            [
+                "name" => "Samsul Pro Min",
+                "kategoriId" => 1,
+                "uniqueId" => "50000",
+                "harga" => 100000,
+                "diskon" => 0.1
+            ],
+            [
+                "name" => "Samsul Pro Min",
+                "kategoriId" => 1,
+                "uniqueId" => "50000",
+                "harga" => 100000,
+                "diskon" => 0.1
+            ],
+            [
+                "name" => "Samsul Pro Plus",
+                "kategoriId" => 2,
+                "uniqueId" => "50000",
+                "harga" => 100000,
+                "diskon" => 0.5
+            ],
+            [
+                "name" => "Samsul Pro Plus",
+                "kategoriId" => 2,
+                "uniqueId" => "50000",
+                "harga" => 100000,
+                "diskon" => 0.5
+            ],
+
+        ];
+        return view('home')->with([
+            'kategori' => $kategori,
+            'product' => $product
+        ]);
     }
 }
